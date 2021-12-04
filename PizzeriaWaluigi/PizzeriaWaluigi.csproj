@@ -129,6 +129,7 @@
     <Compile Include="Handlers\BaseDatosHandler.cs" />
     <Compile Include="Handlers\PizzaPersonalizadaHandler.cs" />
     <Compile Include="Models\IngredienteModel.cs" />
+    <Compile Include="Models\PizzaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
