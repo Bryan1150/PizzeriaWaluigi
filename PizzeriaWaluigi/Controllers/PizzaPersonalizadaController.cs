@@ -56,7 +56,7 @@ namespace PizzeriaWaluigi.Controllers
                 if (ModelState.IsValid)
                 {
                     PizzaPersonalizadaHandler accesoDatos = new PizzaPersonalizadaHandler();
-                    //ViewBag.ExitoAlCrear = accesoDatos.InsertarIngrediente(ingrediente);
+                    ViewBag.ExitoAlCrear = accesoDatos.InsertarIngrediente(ingrediente);
                     if (ViewBag.ExitoAlCrear)
                     {
                         ViewBag.Message = "El ingrediente" + " " + ingrediente.Nombre + " fue agregado a la base de datos.";
