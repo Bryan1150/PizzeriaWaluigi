@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PizzeriaWaluigi.Handlers
 {
-    public class PizzaPersonalizadaHandler
+    public class PizzaPersonalizadaHandler : BaseDatosHandler
     {
     }
 }

@@ -1,0 +1,91 @@
+﻿@model PizzeriaWaluigi.Models.IngredienteModel
+@{
+    ViewBag.Title = "Agregar Ingrediente";
+    List<SelectListItem> Categorias = new List<SelectListItem>() {
+        new SelectListItem { Text = "Cuerpos del Sistema Solar", Value = null },
+        new SelectListItem { Text = "Objetos de Cielo Profundo", Value = "Objetos de Cielo Profundo"  },
+        new SelectListItem { Text = "Astronomia", Value = "Astronomia" },
+        new SelectListItem { Text = "General", Value = "General" },
+    };
+}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+</head>
+<body>
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+    }
+
+    <span class="titulo">
+        Agregar Noticia
+    </span>
+
+    @using (Html.BeginForm("AgregarIngrediente", "PizzaPersonalizada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="well bs-component">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <h4>Ingrese los datos para agregar un nuevo ingrediente.</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Precio, new { @class = "form-control", @rows = 10, @cols = 80 })
+                        @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CantidadMaxima, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.CantidadMaxima, new { @class = "form-control", @rows = 10, @cols = 80 })
+                        @Html.ValidationMessageFor(model => model.CantidadMaxima, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
+                        @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-success" value="Crear" />
+                        @Html.ActionLink("Volver", "listadoDeNoticias", null, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Regresar a Inicio", "InformacionBasica", "Home")
+    </div>
+</body>
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }
+</html>
+

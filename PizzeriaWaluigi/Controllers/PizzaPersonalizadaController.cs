@@ -12,13 +12,13 @@ namespace PizzeriaWaluigi.Controllers
     {
         public ActionResult crearPizza()
         {
-            IngredientesHandler accesoDatos = new IngredientesHandler();
-            ViewBag.ingredientes = accesoDatos.ObtenerTodosLosIngredientes();
+            //IngredientesHandler accesoDatos = new IngredientesHandler();
+            //ViewBag.ingredientes = accesoDatos.ObtenerTodosLosIngredientes();
             return View();
         }
 
         [HttpPost]
-        public ActionResult crearPizza(PizzaModel noticia)
+        public ActionResult crearPizza(string noticia)
         {
             ViewBag.ExitoAlCrear = false;
             try
@@ -29,7 +29,7 @@ namespace PizzeriaWaluigi.Controllers
                     //ViewBag.ExitoAlCrear = accesoDatos.InsertarNoticia(noticia);
                     if (ViewBag.ExitoAlCrear)
                     {
-                        ViewBag.Message = "La noticia" + " " + noticia.Titulo + " fue creada con éxito :)";
+                        ViewBag.Message = "La noticia" + " " + noticia + " fue creada con éxito :)";
                         ModelState.Clear();
                     }
                 }
@@ -38,6 +38,36 @@ namespace PizzeriaWaluigi.Controllers
             catch
             {
                 ViewBag.Message = "Algo salió mal y no fue posible crear la noticia :(";
+                return View();
+            }
+        }
+
+        public ActionResult AgregarIngrediente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AgregarIngrediente(IngredienteModel ingrediente)
+        {
+            ViewBag.ExitoAlCrear = false;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    PizzaPersonalizadaHandler accesoDatos = new PizzaPersonalizadaHandler();
+                    //ViewBag.ExitoAlCrear = accesoDatos.InsertarIngrediente(ingrediente);
+                    if (ViewBag.ExitoAlCrear)
+                    {
+                        ViewBag.Message = "El ingrediente" + " " + ingrediente.Nombre + " fue agregado a la base de datos.";
+                        ModelState.Clear();
+                    }
+                }
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "Algo salió mal y no fue posible agregar el ingrediente.";
                 return View();
             }
         }
