@@ -11,6 +11,7 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Utils/css")
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
     <style>
         .navbar-nav > li > .dropdown-menu {
             background-color: #133b5c;
@@ -37,7 +38,7 @@
         }
 
         body {
-            background-color: #9cafb7;
+            background-color: rgb(247 219 167 / 0.60);
         }
 
         .site-footer {
@@ -180,7 +181,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #251605; ">
         <div class="container-fluid">
-            @Html.ActionLink("Pizerria Waluigi", "InformacionBasica", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:#fff" })
+            @Html.ActionLink("Pizerria Waluigi", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:#fff" })
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -193,10 +194,10 @@
                         @Html.ActionLink("Crea tu pizza", "ListaFuncionarios", "Funcionarios", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Agregar Producto", "PreguntasFrecuentes", "PreguntasFrecuentes", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Agregar Producto", "AgregarIngrediente", "PizzaPersonalizada", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Agregar Ingrediente", "listadoDeActividades", "Actividades", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Agregar Ingrediente", "AgregarIngrediente", "PizzaPersonalizada", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Agregar Combo", "listadoDeMateriales", "MaterialEducativo", new { area = "" }, new { @class = "nav-link" })
@@ -215,7 +216,7 @@
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <p class="copyright-text">
                         Copyright &copy; 2021 Derechos reservados
-                        <a href="#">Planetario Halley</a>.
+                        <a href="#">Pizerria Waluigi</a>.
                     </p>
                 </div>
 

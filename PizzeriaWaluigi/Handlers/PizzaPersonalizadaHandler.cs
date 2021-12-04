@@ -12,7 +12,7 @@ namespace PizzeriaWaluigi.Handlers
         public bool InsertarIngrediente(IngredienteModel ingrediente)
         {
             string consultaAgregarIngrediente =
-            "INSERT INTO dbo.Noticia(nombrePK, precio, cantidadMaxima, imagen, tipoImagen) " +
+            "INSERT INTO dbo.Ingredientes(nombrePK, precio, cantidadMaxima, imagen, tipoImagen) " +
             "VALUES(@nombre, @precio, @cantidadMaxima, @imagen, @tipoImagen);";
             Dictionary<string, object> parametrosIngrediente = new Dictionary<string, object>
             {

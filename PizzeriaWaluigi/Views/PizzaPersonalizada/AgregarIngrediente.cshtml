@@ -1,35 +1,43 @@
 ﻿@model PizzeriaWaluigi.Models.IngredienteModel
 @{
     ViewBag.Title = "Agregar Ingrediente";
-    List<SelectListItem> Categorias = new List<SelectListItem>() {
-        new SelectListItem { Text = "Cuerpos del Sistema Solar", Value = null },
-        new SelectListItem { Text = "Objetos de Cielo Profundo", Value = "Objetos de Cielo Profundo"  },
-        new SelectListItem { Text = "Astronomia", Value = "Astronomia" },
-        new SelectListItem { Text = "General", Value = "General" },
+    List<SelectListItem> Cantidad = new List<SelectListItem>() {
+        new SelectListItem { Text = "1", Value = "1"},
+        new SelectListItem { Text = "2", Value = "2"},
+        new SelectListItem { Text = "3", Value = "3"},
+        new SelectListItem { Text = "4", Value = "4"},
     };
 }
 
 <html>
 <head>
     <style>
-        .titulo {
-            font-family: Poppins-Bold;
-            font-size: 40px;
-            color: #333333;
-            line-height: 1.2;
-            text-align: center;
-            width: 100%;
-            display: block;
-            padding-bottom: 54px;
-            padding-top: 40px;
+        .center_div {
+            margin: 0 auto;
+            width: 80% /* value of your choice which suits your alignment */
         }
 
+        .container2 {
+            height: 100px;
+            position: relative;
+        }
+
+        .center2 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+    
     <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet" />
 </head>
 <body>
+    &nbsp;
     @if (ViewBag.Message != null)
     {
         if (ViewBag.ExitoAlCrear)
@@ -49,58 +57,68 @@
     @using (Html.BeginForm("AgregarIngrediente", "PizzaPersonalizada", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <span class="titulo">Agregar Ingrediente</span>
-        <h4>Ingrese los datos para agregar un ingrediente.</h4>
-        <hr />
-        <div class="card">
-            @Html.AntiForgeryToken()
-            <div class="row">
-                <div class="col-3 col-md-4 col-sm-12">
-                   
-                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-12">
-                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                        </div>
-                   
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Precio, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+        <div class="container center_div">
+            <div class="card" style="width: 65rem;">
+                <div class="card-body">
+                &nbsp;
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <b>@Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })</b>
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <b>@Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label" })</b>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        &nbsp;
+
+                        <div class="form-group">
+                            @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CantidadMaxima, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.CantidadMaxima, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CantidadMaxima, "", new { @class = "text-danger" })
+                    <div class="col">
+                        <div class="form-group">
+                            <b>@Html.LabelFor(model => model.CantidadMaxima, htmlAttributes: new { @class = "control-label" })</b>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.CantidadMaxima, Cantidad, "", new { @class = "form-control", @placeholder = "Cantidad" })
+                                @Html.ValidationMessageFor(model => model.CantidadMaxima, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
-                            @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" class="btn btn-success" value="Crear" />
-                            @Html.ActionLink("Volver", "listadoDeNoticias", null, new { @class = "btn btn-danger" })
+                        <div class="form-group">
+                            <b>@Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label" })</b>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
+                                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
+                </div>
+            </div>
+            &nbsp;
+        </div>
+        <div class="container2">
+            <div class="center2">
+                <input type="submit" class="btn btn-success" value="Crear" />
             </div>
         </div>
     }
-    <div>
-        @Html.ActionLink("Regresar a Inicio", "InformacionBasica", "Home")
-    </div>
 </body>
+
 @section Scripts { @Scripts.Render("~/bundles/jqueryval") }
 </html>
 

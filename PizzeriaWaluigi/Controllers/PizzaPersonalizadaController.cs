@@ -62,6 +62,10 @@ namespace PizzeriaWaluigi.Controllers
                         ViewBag.Message = "El ingrediente" + " " + ingrediente.Nombre + " fue agregado a la base de datos.";
                         ModelState.Clear();
                     }
+                    else
+                    {
+                        ViewBag.Message = "Algo salió mal y no fue posible agregar el ingrediente.";
+                    }
                 }
                 return View();
             }
