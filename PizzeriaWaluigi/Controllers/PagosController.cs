@@ -13,7 +13,7 @@ namespace PizzeriaWaluigi.Controllers
         // GET: Pagos
         public ActionResult Envio_PagoDireccion()
         {
-            return View();
+            return View("Envio_PagoDireccion");
         }
 
         [HttpPost]
@@ -25,7 +25,7 @@ namespace PizzeriaWaluigi.Controllers
 
         public ActionResult Envio_PagoDatos()
         {
-            return View();
+            return View("Envio_PagoDatos");
         }
 
         [HttpPost]

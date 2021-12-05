@@ -10,7 +10,7 @@ namespace PizzeriaWaluigi.Controllers
         {
             PizzaPersonalizadaHandler accesoDatos = new PizzaPersonalizadaHandler();
             ViewBag.ingredientesDisponibles = accesoDatos.ObtenerTodosLosIngredientes();
-            return View();
+            return View("PizzaPersonalizada");
         }
 
         [HttpPost]
@@ -20,10 +20,9 @@ namespace PizzeriaWaluigi.Controllers
             return view;
         }
 
-
         public ActionResult AgregarIngrediente()
         {
-            return View();
+            return View("AgregarIngrediente");
         }
 
         [HttpPost]

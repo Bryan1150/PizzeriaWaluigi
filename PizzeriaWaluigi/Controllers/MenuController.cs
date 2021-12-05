@@ -14,12 +14,12 @@ namespace PizzeriaWaluigi.Controllers
         {
             MenuHandler accesoDatos = new MenuHandler();
             ViewBag.productosDisponibles = accesoDatos.ObtenerTodosLosProductos();
-            return View();
+            return View("Menu");
         }
 
         public ActionResult AgregarProducto()
         {
-            return View();
+            return View("AgregarProducto");
         }
 
         [HttpPost]
