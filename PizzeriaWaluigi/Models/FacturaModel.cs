@@ -15,28 +15,25 @@ namespace PizzeriaWaluigi.Models
         [Display(Name = "Productos")]
         public IList<ProductoModel> Productos{ get; set; }
 
-        [Display(Name = "Direccion Exacta")]
+        [Display(Name = "Direccion Exacta*")]
         [Required(ErrorMessage = "Es necesario que ingrese una direccion.")]
         public string Direccion { get; set; }
 
-        [Display(Name = "Provincia")]
+        [Display(Name = "Provincia*")]
         [Required(ErrorMessage = "Es necesario que ingrese una provincia.")]
         public string Provincia { get; set; }
 
-        [Display(Name = "Canton")]
-        [Required(ErrorMessage = "Es necesario que ingrese una provincia.")]
+        [Display(Name = "Canton")] 
         public string Canton { get; set; }
 
-        [Display(Name = "Distrito")]
-        [Required(ErrorMessage = "Es necesario que ingrese un distrito.")]
+        [Display(Name = "Distrito")]   
         public string Distrito { get; set; }
 
-        [Display(Name = "Telefono")]
+        [Display(Name = "Telefono*")]
         [Required(ErrorMessage = "Es necesario que ingrese un telefono.")]
         public string Telefono { get; set; }
 
         [Display(Name = "Referencia")]
-        [Required(ErrorMessage = "Es necesario que ingrese una referencia.")]
         public string Referencia { get; set; }
     }
 }

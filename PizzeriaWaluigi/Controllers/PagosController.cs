@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using PizzeriaWaluigi.Models;
-using PizzeriaWaluigi.Handlers;
 
 namespace PizzeriaWaluigi.Controllers
 {
     public class PagosController : Controller
     {
-        // GET: Pagos
         public ActionResult Envio_PagoDireccion()
         {
             return View("Envio_PagoDireccion");
@@ -31,7 +25,6 @@ namespace PizzeriaWaluigi.Controllers
         [HttpPost]
         public ActionResult Envio_PagoDatos(FacturaModel factura)
         {
-
             return View();
         }
     }
