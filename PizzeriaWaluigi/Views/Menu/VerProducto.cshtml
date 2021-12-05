@@ -38,8 +38,30 @@
             <p>Precio: @ViewBag.Producto.Precio CRC</p>
             <p>Categoria: @ViewBag.Producto.Categoria</p>
             <br />
-            @Html.ActionLink("Comprar", "Envio_PagoDatos", "Pagos", new { area = "" }, new { @class = "btn btn-success", @style = "color:#fff; width: 100%;"})
+            
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;">
+                Comprar
+            </button>
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modo de envio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        De que forma quiere recibir el pedido?
+                    </div>
+                    <div class="modal-footer">
+                        @Html.ActionLink("Express", "Envio_PagoDatos", "Pagos", new { area = "" }, new { @class = "btn btn-success", @style = "color:#fff; width: 100%;" })
+                        @Html.ActionLink("Recoger en restaurante", "Envio_PagoDatos", "Pagos", new { area = "" }, new { @class = "btn btn-success", @style = "color:#fff; width: 100%;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     
     <br />

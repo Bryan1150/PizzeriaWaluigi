@@ -32,7 +32,7 @@
                     <div class="row-cols-auto">
                         <b>@Html.LabelFor(model => model.Tamaño, htmlAttributes: new { @class = "control-label", style = "text-align: left;" })</b>
                         @Html.DropDownListFor(model => model.Tamaño, Tamano, "", new { @class = "form-control", @placeholder = "Cantidad" })
-                        @Html.ValidationMessageFor(model => model.Tamaño, "", new { @class = "text-danger" })                   
+                        @Html.ValidationMessageFor(model => model.Tamaño, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="row-cols-auto">
@@ -41,30 +41,30 @@
                         @Html.ValidationMessageFor(model => model.Salsa, "", new { @class = "text-danger" })
                     </div>
 
-                        <div class="row-cols-auto" style="text-align: center;">
-                            <p><strong>Ingredientes</strong></p>
-                        </div>
-                        <div class="row" style="text-align: center;">
+                    <div class="row-cols-auto" style="text-align: center;">
+                        <p><strong>Ingredientes</strong></p>
+                    </div>
+                    <div class="row" style="text-align: center;">
 
-                            @foreach (PizzeriaWaluigi.Models.IngredienteModel ingrediente in ViewBag.ingredientesDisponibles)
-                            {
+                        @foreach (PizzeriaWaluigi.Models.IngredienteModel ingrediente in ViewBag.ingredientesDisponibles)
+                        {
 
-                                <div class="col-3">
-                                    <img src=@Url.Action("ObtenerImagen", "PizzaPersonalizada", new { nombreIngrediente = ingrediente.Nombre }) style="width: 5rem;">
+                            <div class="col-3">
+                                <img src=@Url.Action("ObtenerImagen", "PizzaPersonalizada", new { nombreIngrediente = ingrediente.Nombre }) style="width: 5rem;">
 
-                                    <p>@ingrediente.Nombre</p>
-                                    <p><small>Precio: <b>@ingrediente.Precio CRC</b></small></p>
-                                    <div class="qty ">
-                                        <span class="minus bg-dark" onclick="reducirValor('cantidad_@ingrediente.Nombre', '@ingrediente.Precio')">-</span>
-                                        <input type="number" step="1" min="0" max="@ingrediente.CantidadMaxima" class="count" id="cantidad_@ingrediente.Nombre" value="0" disabled>
-                                        <span class="plus bg-dark" onclick="incrementarValor('cantidad_@ingrediente.Nombre', '@ingrediente.CantidadMaxima', '@ingrediente.Precio')">+</span>
-                                    </div>
+                                <p>@ingrediente.Nombre</p>
+                                <p><small>Precio: <b>@ingrediente.Precio CRC</b></small></p>
+                                <div class="qty ">
+                                    <span class="minus bg-dark" onclick="reducirValor('cantidad_@ingrediente.Nombre', '@ingrediente.Precio')">-</span>
+                                    <input type="number" step="1" min="0" max="@ingrediente.CantidadMaxima" class="count" id="cantidad_@ingrediente.Nombre" value="0" disabled>
+                                    <span class="plus bg-dark" onclick="incrementarValor('cantidad_@ingrediente.Nombre', '@ingrediente.CantidadMaxima', '@ingrediente.Precio')">+</span>
                                 </div>
-                            }
+                            </div>
+                        }
 
-                        </div>
                     </div>
                 </div>
+            </div>
 
             <div class="col-2"></div>
 
@@ -74,7 +74,27 @@
                 <div id="precio">
                     <h2><b>Precio:</b> 5000 CRC</h2>
                 </div>
-                <input type="submit" class="btn btn-success" value="Comprar" style="width: 100%;" />
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;">
+                    Comprar
+                </button>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modo de envio</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            De que forma quiere recibir el pedido?
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success" value="En restaurante" style="width: 100%;" />
+                            <input type="submit" class="btn btn-success" value="Express" style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <input hidden type="number" id="precioPizza" value="5000">
