@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    @using (Html.BeginForm("SubmitPizzaCreation", "CreatePizza", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("PizzaPersonalizada", "PizzaPersonalizada", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <span class="titulo">Crea tu pizza</span>
