@@ -2,47 +2,128 @@
 @{
     var productosDisponibles = ViewBag.productosDisponibles;
 }
+<html>
 <head>
     <link href="~/Styles/ListaFuncionarios.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+    <style>
+
+        img {
+            border-radius: 0.5em;
+            border: 2px solid #133b5c;
+            box-shadow: 0px 0px 0px #ccc;
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+        }
+    </style>
 </head>
-<span class="titulo">
-    Productos
-</span>
 
-<style>
-    .cuadroFuncionario {
-        margin-bottom: 10px;
-        padding: 1em;
-    }
-
-    img {
-        border-radius: 0.5em;
-        border: 2px solid #133b5c;
-        box-shadow: 0px 0px 0px #ccc;
-        height: 180px;
-        width: 180px;
-        object-fit: cover;
-    }
-</style>
-
-<div class="row d-flex flex-wrap align-items-center">
-    @foreach (var producto in ViewBag.productosDisponibles)
-    {
-        <div class="cuadroFuncionario row d-flex flex-wrap align-items-center col-md-6">
-            <div class="imagenFuncionario col-md-4">
-                <img src=@Url.Action("ObtenerImagen", "Menu", new { idProducto = producto.Id})>
-            </div>
-            <div class="textoFuncionario col-md-8">
-                <h3>@producto.Nombre</h3>
-                <p>@producto.Descripcion</p>
-                @Html.ActionLink("Ver más", "verProducto", "Menu", new { idProducto = producto.Id }, null)
-                <br />
+<body>
+    <span class="titulo">
+        Productos
+    </span>
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Producto.">
+                &nbsp
+                <div class="col form-check form-check-inline">
+                    <p>
+                        <label class="form-check-label" for="refresco">Refresco</label>
+                        <input class="form-check-input" type="checkbox" value="" id="refresco" checked onchange="cambiarEstadoRefresco()" />
+                    </p>
+                </div>
+                &nbsp
+                <div class="col form-check form-check-inline">
+                    <p>
+                        <label class="form-check-label" for="postre">Postre</label>
+                        <input class="form-check-input" type="checkbox" value="" id="postre" checked onchange="cambiarEstadoPostre()" />
+                    </p>
+                </div>
+                &nbsp
+                <div class="col form-check form-check-inline">
+                    <p>
+                        <label class="form-check-label" for="extra">Extra</label>
+                        <input class="form-check-input" type="checkbox" value="" id="extra" checked onchange="cambiarEstadoExtra()" />
+                    </p>
+                </div>
+                &nbsp
+                <div class="col form-check form-check-inline">
+                    <p>
+                        <label class="form-check-label" for="combo">Combo</label>
+                        <input class="form-check-input" type="checkbox" value="" id="combo" checked onchange="cambiarEstadoCombo()" />
+                    </p>
+                </div>
+                &nbsp
             </div>
         </div>
-    }
-</div>
+        <div class="col-9">
+            <div class="row">
+                @foreach (var producto in ViewBag.productosDisponibles)
+                {
+                    <div class="col-3">
+                        <div class="@producto.Categoria">
 
+                            <img src=@Url.Action("ObtenerImagen", "Menu", new { idProducto = producto.Id })>
+                            <h3>@producto.Nombre</h3>
+                            <p>@producto.Descripcion</p>
+                            <p>Precio: @producto.Precio CRC</p>
+                            @Html.ActionLink("Ver más", "verProducto", "Menu", new { idProducto = producto.Id }, null)
+                            <br />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+        function cambiarEstadoRefresco() {
+            estadoActual = document.getElementById("refresco").checked;
+            if (estadoActual) {
+                toggle('Refresco', 'block');
+            } else {
+                toggle('Refresco', 'none');
+            }
+        }
+
+        function cambiarEstadoPostre() {
+            estadoActual = document.getElementById("postre").checked;
+            if (estadoActual) {
+                toggle('Postre', 'block');
+            } else {
+                toggle('Postre', 'none');
+            }
+        }
+
+        function cambiarEstadoExtra() {
+            estadoActual = document.getElementById("extra").checked;
+            if (estadoActual) {
+                toggle('Extra', 'block');
+            } else {
+                toggle('Extra', 'none');
+            }
+        }
+
+        function cambiarEstadoCombo() {
+            estadoActual = document.getElementById("combo").checked;
+            if (estadoActual) {
+                toggle('Combo', 'block');
+            } else {
+                toggle('Combo', 'none');
+            }
+        }
+
+        function toggle(className, displayState) {
+            var elements = document.getElementsByClassName(className)
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = displayState;
+            }
+        }
+    </script>
+</body>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+</html>
