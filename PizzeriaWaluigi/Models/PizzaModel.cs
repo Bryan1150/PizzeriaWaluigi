@@ -8,11 +8,11 @@ namespace PizzeriaWaluigi.Models
     {
         [Display(Name = "Tamaño")]
         [Required(ErrorMessage = "Es necesario que ingrese un tamaño para la pizza.")]
-        public string Nombre { get; set; }
+        public string Tamaño { get; set; }
 
         [Display(Name = "Salsa")]
         [Required(ErrorMessage = "Es necesario que ingrese una salsa para la pizza.")]
-        public double Precio { get; set; }
+        public string Salsa { get; set; }
 
         [Display(Name = "Ingredientes")]
         [Required(ErrorMessage = "Es necesario que ingrese algun ingrediente para la pizza.")]

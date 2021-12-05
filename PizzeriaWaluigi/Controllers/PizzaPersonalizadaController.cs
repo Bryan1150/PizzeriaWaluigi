@@ -45,5 +45,13 @@ namespace PizzeriaWaluigi.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult ObtenerImagen(string nombreIngrediente)
+        {
+            PizzaPersonalizadaHandler ingredienteHandler = new PizzaPersonalizadaHandler();
+            var tupla = ingredienteHandler.ObtenerFoto(nombreIngrediente);
+            return File(tupla.Item1, tupla.Item2);
+        }
     }
 }

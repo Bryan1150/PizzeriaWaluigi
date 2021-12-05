@@ -14,7 +14,7 @@
     <style>
         .center_div {
             margin: 0 auto;
-            width: 80% 
+            width: 80%
         }
 
         .container2 {
@@ -31,7 +31,7 @@
             transform: translate(-50%, -50%);
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">  
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
     <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet" />
 </head>
@@ -60,52 +60,52 @@
         <div class="container center_div">
             <div class="card" style="width: 65rem;">
                 <div class="card-body">
-                &nbsp;
-                @Html.AntiForgeryToken()
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <b>@Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })</b>
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    &nbsp;
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            &nbsp;
+
+                            <div class="form-group">
+                                @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.CantidadMaxima, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.CantidadMaxima, Cantidad, "", new { @class = "form-control", @placeholder = "Cantidad" })
+                                    @Html.ValidationMessageFor(model => model.CantidadMaxima, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
+                                    @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <b>@Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label" })</b>
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        &nbsp;
-
-                        <div class="form-group">
-                            @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
-                        </div>
-
                     </div>
-
-                    <div class="col">
-                        <div class="form-group">
-                            <b>@Html.LabelFor(model => model.CantidadMaxima, htmlAttributes: new { @class = "control-label" })</b>
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.CantidadMaxima, Cantidad, "", new { @class = "form-control", @placeholder = "Cantidad" })
-                                @Html.ValidationMessageFor(model => model.CantidadMaxima, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <b>@Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label" })</b>
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
-                                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
             &nbsp;
