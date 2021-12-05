@@ -121,15 +121,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\PizzaPersonalizadaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\ArchivosHandler.cs" />
     <Compile Include="Handlers\BaseDatosHandler.cs" />
+    <Compile Include="Handlers\MenuHandler.cs" />
     <Compile Include="Handlers\PizzaPersonalizadaHandler.cs" />
+    <Compile Include="Models\ComboModel.cs" />
+    <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\IngredienteModel.cs" />
     <Compile Include="Models\PizzaModel.cs" />
+    <Compile Include="Models\ProductoModel.cs" />
+    <Compile Include="Models\TarjetaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +331,9 @@
     <Content Include="Utils\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Utils\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Views\PizzaPersonalizada\PizzaPersonalizada.cshtml" />
+    <Content Include="Views\Pagos\Envio_PagoDireccion.cshtml" />
+    <Content Include="Views\Pagos\Envio_PagoDatos.cshtml" />
+    <Content Include="Views\Menu\AgregarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
