@@ -1,0 +1,118 @@
+﻿
+@model PizzeriaWaluigi.Models.TarjetaModel
+@{
+    ViewBag.Title = "Pago";
+}
+
+<html>
+<head>
+    <style>
+        .center_div {
+            margin: 0 auto;
+            width: 80%
+        }
+
+        .container2 {
+            height: 100px;
+            position: relative;
+        }
+
+        .center2 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet" />
+</head>
+<body>
+    &nbsp;
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm("Envio_PagoDatos", "Pagos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <span class="titulo">Direccion de envio</span>
+
+        <div class="container center_div">
+            <div class="card" style="width: 65rem;">
+                <div class="card-body">
+                    &nbsp;
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.NombreTarjeta, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.NombreTarjeta, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NombreTarjeta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.FechaExpiracion, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.FechaExpiracion, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.FechaExpiracion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        
+                            &nbsp;
+
+                            <div class="form-group">
+                                @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.NumeroTarjeta, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.NumeroTarjeta, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NumeroTarjeta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.CVV, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.CVV, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+        </div>
+        <div class="container2">
+            <div class="center2">
+                @Html.ActionLink("Pagar", "Index", "Home", new { area = "" }, new { @class = "btn btn-success", @style = "color:#fff" })
+            </div>
+        </div>
+    }
+</body>
+
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }
+</html>
+
