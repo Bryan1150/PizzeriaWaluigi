@@ -1,0 +1,134 @@
+﻿@model PizzeriaWaluigi.Models.FacturaModel
+@{
+    ViewBag.Title = "Direccion";
+}
+
+<html>
+<head>
+    <style>
+        .center_div {
+            margin: 0 auto;
+            width: 80%
+        }
+
+        .container2 {
+            height: 100px;
+            position: relative;
+        }
+
+        .center2 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet" />
+</head>
+<body>
+    &nbsp;
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm("Envio_PagoDireccion", "Pagos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <span class="titulo">Direccion de envio</span>
+
+        <div class="container center_div">
+            <div class="card" style="width: 65rem;">
+                <div class="card-body">
+                    &nbsp;
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Provincia, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Provincia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Canton, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Canton, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Canton, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Distrito, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Distrito, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Distrito, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            &nbsp;
+
+                            <div class="form-group">
+                                @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Referencia, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Referencia, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Referencia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+        </div>
+        <div class="container2">
+            <div class="center2">
+                @Html.ActionLink("Enviar", "Envio_PagoDatos", "Pagos", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                <input type="submit" class="btn btn-success" value="Crear" />
+            </div>
+        </div>
+    }
+</body>
+
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }
+</html>
+

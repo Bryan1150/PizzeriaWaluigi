@@ -1,0 +1,132 @@
+﻿@model PizzeriaWaluigi.Models.ProductoModel
+@{
+    ViewBag.Title = "Agregar Producto";
+    List<SelectListItem> Categoria = new List<SelectListItem>() {
+        new SelectListItem { Text = "Combo", Value = "Combo"},
+        new SelectListItem { Text = "Refresco", Value = "Refresco"},
+        new SelectListItem { Text = "Postre", Value = "Postre"},
+        new SelectListItem { Text = "Extra", Value = "Extra"},
+    };
+}
+
+<html>
+<head>
+    <style>
+        .center_div {
+            margin: 0 auto;
+            width: 80%
+        }
+
+        .container2 {
+            height: 100px;
+            position: relative;
+        }
+
+        .center2 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+    <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet" />
+</head>
+<body>
+    &nbsp;
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm("AgregarProducto", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <span class="titulo">Agregar Producto</span>
+
+        <div class="container center_div">
+            <div class="card" style="width: 65rem;">
+                <div class="card-body">
+                    &nbsp;
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            &nbsp;
+
+                            <div class="form-group">
+                                @Html.ActionLink("<-", "Index", "Home", new { area = "" }, new { @class = "btn btn-danger", @style = "color:#fff" })
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Categoria, Categoria, "", new { @class = "form-control", @placeholder = "Cantidad" })
+                                    @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <b>@Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label" })</b>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Imagen, new { type = "file", @class = "btn btn alert-info" })
+                                    @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+        </div>
+        <div class="container2">
+            <div class="center2">
+                <input type="submit" class="btn btn-success" value="Crear" />
+            </div>
+        </div>
+    }
+</body>
+
+@section Scripts { @Scripts.Render("~/bundles/jqueryval") }
+</html>
+
+
