@@ -1,0 +1,118 @@
+﻿@model PizzeriaWaluigi.Models.PizzaModel
+@{
+    ViewBag.Title = "Pizza Personalizada";
+    List<SelectListItem> Tamano = new List<SelectListItem>() {
+        new SelectListItem { Text = "Individual", Value = "Individual"},
+        new SelectListItem { Text = "Mediana", Value = "Mediana"},
+        new SelectListItem { Text = "Familiar", Value = "Familiar"}
+    };
+
+    List<SelectListItem> Salsa = new List<SelectListItem>() {
+        new SelectListItem { Text = "Sin Salsa", Value = "Sin Salsa"},
+        new SelectListItem { Text = "Salsa BBQ", Value = "Salsa BBQ"},
+        new SelectListItem { Text = "Salsa de tomate", Value = "Salsa de tomate"},
+        new SelectListItem { Text = "Crema Fresca", Value = "Crema Fresca"}
+    };
+}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/PizzaPersonalizada.css" />
+</head>
+<body>
+
+    @using (Html.BeginForm("PizzaPersonalizada", "PizzaPersonalizada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <span class="titulo">Crea tu pizza</span>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+
+                    <div class="row-cols-auto">
+                        <b>@Html.LabelFor(model => model.Tamaño, htmlAttributes: new { @class = "control-label", style = "text-align: left;" })</b>
+                        @Html.DropDownListFor(model => model.Tamaño, Tamano, "", new { @class = "form-control", @placeholder = "Cantidad" })
+                        @Html.ValidationMessageFor(model => model.Tamaño, "", new { @class = "text-danger" })                   
+                    </div>
+
+                    <div class="row-cols-auto">
+                        <b>@Html.LabelFor(model => model.Salsa, htmlAttributes: new { @class = "control-label", style = "text-align: left;" })</b>
+                        @Html.DropDownListFor(model => model.Salsa, Salsa, "", new { @class = "form-control", @placeholder = "Cantidad" })
+                        @Html.ValidationMessageFor(model => model.Salsa, "", new { @class = "text-danger" })
+                    </div>
+
+                        <div class="row-cols-auto" style="text-align: center;">
+                            <p><strong>Ingredientes</strong></p>
+                        </div>
+                        <div class="row" style="text-align: center;">
+
+                            @foreach (PizzeriaWaluigi.Models.IngredienteModel ingrediente in ViewBag.ingredientesDisponibles)
+                            {
+
+                                <div class="col-3">
+                                    <img src=@Url.Action("ObtenerImagen", "PizzaPersonalizada", new { nombreIngrediente = ingrediente.Nombre }) style="width: 5rem;">
+
+                                    <p>@ingrediente.Nombre</p>
+                                    <p><small>Precio: <b>@ingrediente.Precio CRC</b></small></p>
+                                    <div class="qty ">
+                                        <span class="minus bg-dark" onclick="reducirValor('cantidad_@ingrediente.Nombre', '@ingrediente.Precio')">-</span>
+                                        <input type="number" step="1" min="0" max="@ingrediente.CantidadMaxima" class="count" id="cantidad_@ingrediente.Nombre" value="0" disabled>
+                                        <span class="plus bg-dark" onclick="incrementarValor('cantidad_@ingrediente.Nombre', '@ingrediente.CantidadMaxima', '@ingrediente.Precio')">+</span>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-2"></div>
+
+            <div class="col-4" style="text-align: center;">
+                <p>Estado actual de la pizza</p>
+                <img src="~/Images/PizzaPlaceholder.png" style="width: 20rem;">
+                <div id="precio">
+                    <h2><b>Precio:</b> 5000 CRC</h2>
+                </div>
+                <input type="submit" class="btn btn-success" value="Comprar" style="width: 100%;" />
+            </div>
+
+            <input hidden type="number" id="precioPizza" value="5000">
+        </div>
+    }
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        let precioInput = document.getElementById('precioPizza');
+        function incrementarValor(nombreIngrediente, cantidadMaxima, precio) {
+            let input = document.getElementById(nombreIngrediente);
+            console.log(precio);
+            if (parseInt(input.value) + 1 <= cantidadMaxima) {
+                input.value = parseInt(input.value) + 1;
+                precioInput.value = parseInt(precioInput.value) + parseInt(precio);
+                actualizarPrecio()
+            }
+        }
+
+        function reducirValor(nombreIngrediente, precio) {
+            let input = document.getElementById(nombreIngrediente);
+            if (parseInt(input.value) - 1 >= 0) {
+                input.value = input.value - 1;
+                precioInput.value = parseInt(precioInput.value) - parseInt(precio);
+                actualizarPrecio()
+            }
+        }
+
+        function actualizarPrecio() {
+            let display = "";
+            let precio = document.getElementById('precioPizza').value;
+            console.log(precio);
+            display += "<h2><b>Precio:</b> " + precio + " CRC</h2>";
+            document.getElementById("precio").innerHTML = display;
+        }
+    </script>
+
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+</html>
