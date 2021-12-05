@@ -12,6 +12,15 @@ namespace PizzeriaWaluigi.Controllers
             ViewBag.ingredientesDisponibles = accesoDatos.ObtenerTodosLosIngredientes();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult PizzaPersonalizada(PizzaModel pizza)
+        {
+            ActionResult view = RedirectToAction("Envio_PagoDireccion", "Pagos", pizza);
+            return view;
+        }
+
+
         public ActionResult AgregarIngrediente()
         {
             return View();
