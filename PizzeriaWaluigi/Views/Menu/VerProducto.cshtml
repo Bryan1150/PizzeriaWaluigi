@@ -1,0 +1,51 @@
+﻿@model PizzeriaWaluigi.Models.ProductoModel
+@{
+    var Producto = ViewBag.Producto;
+}
+<head>
+    <link href="~/Styles/ListaFuncionarios.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Utils/css/main.css">
+</head>
+
+<style>
+    img {
+        border-radius: 0.5em;
+        border: 2px solid #133b5c;
+        box-shadow: 0px 0px 0px #ccc;
+        height: 400px;
+        width: 400px;
+        object-fit: cover;
+    }
+</style>
+
+<body>
+    <span class="titulo">
+        @ViewBag.Producto.Nombre 
+    </span>
+
+    <div class="row d-flex flex-wrap align-items-center">
+
+        <div class="col-md-4">
+            <img src=@Url.Action("ObtenerImagen", "Menu", new { correo = @ViewBag.Producto.Id })>
+        </div>
+        <div class="col-md-4">
+            <h4>Descripcion</h4>
+            <p>@ViewBag.Producto.Descripcion</p>
+            <br />
+
+            <h4>Detalles</h4>
+            <p>Precio: @ViewBag.Producto.Precio</p>
+            <p>Categoria: @ViewBag.Producto.Categoria</p>
+            <br />
+
+        </div>
+    </div>
+
+    <br />
+
+    <h4>Descripción</h4>
+    <p>@ViewBag.Producto.Descripcion</p>
+
+    <div style="margin-top:100px"></div>
+
+</body>

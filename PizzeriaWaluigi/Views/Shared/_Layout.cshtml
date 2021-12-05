@@ -188,20 +188,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        @Html.ActionLink("Menu", "HorariosParqueoTransporte", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Menu", "Menu", "Menu", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Crea tu pizza", "PizzaPersonalizada", "PizzaPersonalizada", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Agregar Producto", "AgregarIngrediente", "PizzaPersonalizada", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Agregar Producto", "AgregarProducto", "Menu", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Agregar Ingrediente", "AgregarIngrediente", "PizzaPersonalizada", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Agregar Combo", "listadoDeMateriales", "MaterialEducativo", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+                    </li>              
                 </ul>
             </div>
         </div>

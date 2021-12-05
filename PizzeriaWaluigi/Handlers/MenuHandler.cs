@@ -21,11 +21,16 @@ namespace PizzeriaWaluigi.Handlers
             string consulta = "SELECT * FROM Pizerria.dbo.Productos";
             return (ObtenerProducto(consulta));
         }
+        public ProductoModel VerProducto(int IdProducto)
+        {
+            string consulta = "SELECT * FROM Pizerria.dbo.Productos WHERE IdProducto = '" + IdProducto + "';";
+            return (ObtenerProducto(consulta)[0]);
+        }
         public bool InsertarProducto(ProductoModel producto)
         {
             string consultaAgregarProducto =
-            "INSERT INTO Pizerria.dbo.Productos(nombre, descripcion, precio, imagen, categoria, tipoPizza, tipoImagen) " +
-            "VALUES(@nombre, @descripcion, @precio, @imagen, @categoria, @tipoPizza, @tipoImagen);";
+            "INSERT INTO Pizerria.dbo.Productos(nombre, descripcion, precio, imagen, categoria, tipoImagen) " +
+            "VALUES(@nombre, @descripcion, @precio, @imagen, @categoria, @tipoImagen);";
             Dictionary<string, object> parametrosProducto = new Dictionary<string, object>
             {
                 {"@nombre", producto.Nombre},
@@ -53,7 +58,7 @@ namespace PizzeriaWaluigi.Handlers
                 new ProductoModel
                 {
                     Id = Convert.ToInt32(columna["IdProducto"]),
-                    Nombre = Convert.ToString(columna["nombrePK"]),
+                    Nombre = Convert.ToString(columna["nombre"]),
                     Precio = Convert.ToDouble(columna["precio"]),
                     Descripcion = Convert.ToString(columna["descripcion"]),
                     Categoria = Convert.ToString(columna["categoria"])
